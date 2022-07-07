@@ -28,14 +28,31 @@ class RegisterViewModel @Inject constructor(
                     event.email, event.password
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        state = state.copy(error = false)
+                        state = state.copy(
+                            email = "",
+                            password = "",
+                            isLoading = false,
+                            error = false,
+                        )
                         Log.d("firebaseAuth", auth.currentUser.toString())
                     } else {
-                        state = state.copy(error = true)
+                        state = state.copy(
+                            email = "",
+                            password = "",
+                            isLoading = false,
+                            error = true
+                        )
                         Log.d("firebaseAuth", task.exception.toString())
                     }
                 }
             }
+            is RegisterScreenEvents.OnEmailChange -> {
+                state = state.copy(email = event.email)
+            }
+            is RegisterScreenEvents.OnPasswordChange -> {
+                state = state.copy(password = event.password)
+            }
+            else -> {}
         }
     }
 

@@ -1,5 +1,6 @@
 package com.aweirdtrashcan.playlistify.di
 
+import com.aweirdtrashcan.playlistify.presentation.login_screen.LoginScreenViewModel
 import com.aweirdtrashcan.playlistify.presentation.playlist_list.PlaylistViewModel
 import com.aweirdtrashcan.playlistify.presentation.register_scren.RegisterViewModel
 import dagger.Module
@@ -22,5 +23,11 @@ object AppModule {
     @Singleton
     fun providePlaylistViewModel(): PlaylistViewModel {
         return PlaylistViewModel()
+    }
+
+    @Provides
+    @Singleton
+    fun privateLoginViewModel(): LoginScreenViewModel {
+        return LoginScreenViewModel()
     }
 }

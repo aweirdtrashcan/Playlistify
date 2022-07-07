@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "457030671858",
+    "project_id": "playlistify-70fae",
+    "storage_bucket": "playlistify-70fae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457030671858:android:7e1aebcbf49a5013b6df6b",
+        "android_client_info": {
+          "package_name": "com.aweirdtrashcan.playlistify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457030671858-1439qb7bd3um96qbpgksclctibsnop8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aweirdtrashcan.playlistify",
+            "certificate_hash": "133b00e4a16c67a84281f8162b9930ec31d49366"
+          }
+        },
+        {
+          "client_id": "457030671858-tvgpomgcif5uqd91m6j9pasuu53ro5d5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAl3SAUSIpPPImwvHqaxNVRDFlMrLRPmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457030671858-tvgpomgcif5uqd91m6j9pasuu53ro5d5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

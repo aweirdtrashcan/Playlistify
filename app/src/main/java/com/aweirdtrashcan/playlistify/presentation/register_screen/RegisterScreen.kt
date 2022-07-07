@@ -1,6 +1,5 @@
-package com.aweirdtrashcan.playlistify.presentation.register_scren
+package com.aweirdtrashcan.playlistify.presentation.register_screen
 
-import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -16,7 +15,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.aweirdtrashcan.playlistify.presentation.destinations.LoginScreenDestination
 import com.aweirdtrashcan.playlistify.presentation.destinations.PlaylistScreenDestination
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

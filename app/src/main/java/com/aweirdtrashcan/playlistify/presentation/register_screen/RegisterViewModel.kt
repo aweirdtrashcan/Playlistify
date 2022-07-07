@@ -1,4 +1,4 @@
-package com.aweirdtrashcan.playlistify.presentation.register_scren
+package com.aweirdtrashcan.playlistify.presentation.register_screen
 
 import android.util.Log
 import androidx.compose.runtime.getValue

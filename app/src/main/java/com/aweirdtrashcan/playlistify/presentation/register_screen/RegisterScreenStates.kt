@@ -1,4 +1,4 @@
-package com.aweirdtrashcan.playlistify.presentation.register_scren
+package com.aweirdtrashcan.playlistify.presentation.register_screen
 
 data class RegisterScreenStates(
     var email: String = "",

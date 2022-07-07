@@ -2,7 +2,7 @@ package com.aweirdtrashcan.playlistify.di
 
 import com.aweirdtrashcan.playlistify.presentation.login_screen.LoginScreenViewModel
 import com.aweirdtrashcan.playlistify.presentation.playlist_list.PlaylistViewModel
-import com.aweirdtrashcan.playlistify.presentation.register_scren.RegisterViewModel
+import com.aweirdtrashcan.playlistify.presentation.register_screen.RegisterViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

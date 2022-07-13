@@ -1,21 +1,28 @@
 package com.aweirdtrashcan.playlistify.presentation.playlist_list
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.drawable.toIcon
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.aweirdtrashcan.playlistify.domain.model.Playlist
+import com.aweirdtrashcan.playlistify.presentation.destinations.PlaylistInfoScreenDestination
+import com.aweirdtrashcan.playlistify.presentation.destinations.PlaylistScreenDestination
+import com.aweirdtrashcan.playlistify.presentation.playlist_info_screen.PlaylistInfoScreen
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.app
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -23,25 +30,28 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 fun PlaylistScreen(
     navigator: DestinationsNavigator,
-    viewModel: PlaylistViewModel = hiltViewModel(),
+    viewModel: PlaylistViewModel = hiltViewModel()
 ) {
     val user: FirebaseUser? = Firebase.auth.currentUser
-    val playlists: List<Playlist>? = null
+    val state: PlaylistScreenState = viewModel.state
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
+            Spacer(modifier = Modifier.height(24.dp))
             LazyColumn {
-                items(playlists!!.size) { index ->
+                items(state.playlists) { item ->
                     PlaylistCard(
-                        playlist = playlists[index],
+                        modifier = Modifier.padding(5.dp),
+                        playlist = item,
                         elevation = 5,
                         roundedCornerShape = RoundedCornerShape(10.dp),
                         onClick = {
-                            viewModel.onEvent(PlaylistScreenEvents.onClick(playlists[index]))
+                            navigator.navigate(PlaylistInfoScreenDestination(it))
                         }
                     )
                 }
+
             }
         }
     }
@@ -66,20 +76,25 @@ fun PlaylistCard(
             modifier = Modifier
                 .height(60.dp)
                 .fillMaxWidth()
+                .padding(4.dp)
         ) {
             Column {
-                AsyncImage(
-                    model = playlist.imageUrl,
-                    contentDescription = null
-                )
+                playlist.imageUri?.let {
+                    AsyncImage(
+                        model = it,
+                        contentDescription = null,
+                        modifier = Modifier.clip(shape = RoundedCornerShape((3.5).dp))
+                    )
+                }
             }
+            Spacer(modifier = Modifier.width(5.dp))
             Column {
-                Text(
-                    text = playlist.name
-                )
-                Text(
-                    text = playlist.user
-                )
+                playlist.name?.let {
+                    Text(text = it)
+                }
+                playlist.name?.let {
+                    Text(text = it)
+                }
             }
         }
     }

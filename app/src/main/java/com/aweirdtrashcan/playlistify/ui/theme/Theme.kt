@@ -1,10 +1,9 @@
 package com.aweirdtrashcan.playlistify.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
     primary = Green500,
@@ -18,7 +17,8 @@ private val LightColorPalette = lightColors(
 //    secondary = Teal200
     primary = Green500,
     primaryVariant = Green700,
-    secondary = Blue200
+    secondary = Blue200,
+    background = Color.White
 
     /* Other default colors to override
     background = Color.White,

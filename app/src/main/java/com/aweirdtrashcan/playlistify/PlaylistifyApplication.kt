@@ -1,7 +1,7 @@
 package com.aweirdtrashcan.playlistify
 
-import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import android.app.Application
 
 @HiltAndroidApp
-class PlaylistifyApplication: Application()
+class PlaylistifyApplication : Application()

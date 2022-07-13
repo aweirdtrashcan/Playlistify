@@ -5,19 +5,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.aweirdtrashcan.playlistify.domain.repository.FirebaseRepository
+import androidx.lifecycle.viewModelScope
+import com.aweirdtrashcan.playlistify.util.Constants
+import com.aweirdtrashcan.playlistify.util.Constants.ON_REGISTER_ERROR
+import com.aweirdtrashcan.playlistify.util.Constants.ON_REGISTER_SUCCESS
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(
-    firebaseRepository: FirebaseRepository
-): ViewModel() {
+class RegisterViewModel @Inject constructor(): ViewModel() {
 
     var state by mutableStateOf(RegisterScreenStates())
+    var sharedFlow = MutableSharedFlow<RegisterScreenEvents>()
+        private set
 
     private var auth: FirebaseAuth = Firebase.auth;
 
@@ -29,20 +34,20 @@ class RegisterViewModel @Inject constructor(
                     event.email, event.password
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        state = state.copy(
-                            email = "",
-                            password = "",
-                            isLoading = false,
-                            error = false,
-                        )
+                        state = state.copy(isLoading = false)
+
+                        viewModelScope.launch {
+                            sharedFlow.emit(RegisterScreenEvents.OnRegisterSuccessful)
+                        }
+
                         Log.d("firebaseAuth", auth.currentUser.toString())
                     } else {
-                        state = state.copy(
-                            email = "",
-                            password = "",
-                            isLoading = false,
-                            error = true
-                        )
+                        state = state.copy(isLoading = false)
+
+                        viewModelScope.launch {
+                            sharedFlow.emit(RegisterScreenEvents.OnRegisterError(task.exception?.message))
+                        }
+
                         Log.d("firebaseAuth", task.exception.toString())
                     }
                 }

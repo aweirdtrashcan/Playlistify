@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.aweirdtrashcan.playlistify">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".PlaylistifyApplication"
         android:allowBackup="true"

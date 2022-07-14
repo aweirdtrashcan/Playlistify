@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
@@ -27,9 +28,16 @@ class MainActivity: ComponentActivity() {
 
     private var hasPermissions: Boolean? = null
 
+    private val askPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) {
+        hasPermissions = it
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hasPermissions = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        Toast.makeText(this, hasPermissions.toString(), Toast.LENGTH_LONG).show()
         setContent {
             PlaylistifyTheme {
                 androidx.compose.material.Surface(

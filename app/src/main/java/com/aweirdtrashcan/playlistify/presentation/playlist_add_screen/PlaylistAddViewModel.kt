@@ -43,8 +43,6 @@ class PlaylistAddViewModel @Inject constructor(
 
     private val mStorage: StorageReference = Firebase.storage.getReferenceFromUrl(URL_REFERENCE)
 
-    private var uri: Uri? = null
-
     private val db: DatabaseReference = Firebase.database.getReference("playlists")
 
     fun onEvent(events: PlaylistAddEvents) {
@@ -61,6 +59,12 @@ class PlaylistAddViewModel @Inject constructor(
                         sharedFlow.emit(PlaylistAddEvents.OnPlaylistSentError(e.message.toString()))
                     }
                 }
+            }
+            is PlaylistAddEvents.OnPlaylistImageChanged -> {
+                state = state.copy(playlistPhoto = events.playlistImage)
+            }
+            is PlaylistAddEvents.OnPlaylistNameChanged -> {
+                state = state.copy(playlistName = events.playlistName)
             }
             else -> {}
         }

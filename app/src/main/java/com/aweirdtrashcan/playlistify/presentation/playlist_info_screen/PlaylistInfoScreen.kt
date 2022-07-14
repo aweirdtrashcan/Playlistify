@@ -64,7 +64,7 @@ fun PlaylistInfoScreen(
                         .fillMaxHeight(.25f)
                 ) {
                     AsyncImage(
-                        model = playlist.imageUrl,
+                        model = playlist.imageUri,
                         contentDescription = null,
                         contentScale = ContentScale.FillBounds,
                         modifier = Modifier
